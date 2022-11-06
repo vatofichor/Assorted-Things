@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# LINTPHP
+# -----------------------------------
+# GitHub: py-seb
+# Author: Sebastian Mass
+# I made this little script to wrap the php -l option to lint multiple php files and output to given log file.
+#
+# Command Usage:
+#   lintphp "path/to/a/file another/path/to/a/file" path/to/your/logfile
+#
+# You can omit the second argument to have the script ask if you'd like to create a new file.
+# Which will then ask you to provide a file name, prepend the full path to the new file if you
+# don't want it in the current directory.
+# If no log file is provided all stdout from 'php -l' will be trashed.
+#
+# You MUST provide at least one file or the script will exit as a failure.
+
+files=${1}
+logfile=${2}
+
+if [[ -z "$files" ]]; then
+	echo "No files provided."
+	exit 1
+fi
+
+if [[ -z "$logfile" ]] || [[ ! -f "$logfile" ]]; then
+	echo "No log file provided. Create one? [y/n]"
+    read createFile
+    if [[ "$createFile" == "y" ]]; then
+        echo "Enter the file name: (prepend filepath if log is in another directory)"
+        read newLogFileName
+        if touch "$newLogFileName" 2>&1; then
+            logfile=$newLogFileName
+        fi
+    else
+	   logfile="/dev/null"
+    fi
+fi
+
+errorCount=0
+for file in $files
+do
+	if ! php -l "$file" >>"$logfile" 2>&1; then
+        echo "--------------lintPHP--------------"
+        echo -e "There was an error in file: \e[3m'$file'\e[0m"
+        echo "-----------------------------------"
+        ((errorCount++))
+    fi
+done
+
+if [[ $errorCount -gt 0 ]] && [[ ! "$logfile" == "/dev/null" ]]; then
+    echo -e "\e[1mCheck the $logfile log file for more details.\e[0m"
+elif [[ "$logfile" == "/dev/null" ]]; then
+    echo -e "\e[1mNo Log File Provided; to view lint results specify a log file.\e[0m"
+else
+    echo "No errors detected."
+fi

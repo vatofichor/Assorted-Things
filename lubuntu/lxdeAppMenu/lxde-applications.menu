@@ -1,0 +1,90 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://standards.freedesktop.org/menu-spec/1.0/menu.dtd">
+
+<!-- Applications Menu -->
+<Menu>
+    <Name>Applications</Name>
+    <Directory>lxde-menu-applications.directory</Directory>
+    
+	<!-- Read standard .directory and .desktop file locations -->
+	<DefaultAppDirs/>
+	<DefaultDirectoryDirs/>
+	
+	<!-- Custom-Tools -->
+    <Menu>
+        <Name>Tools</Name>
+        <Directory>Custom-Tools.directory</Directory>
+        <Include>
+            <Category>X-Tools</Category>
+        </Include>
+    </Menu>
+    <!-- END Custom-Tools -->
+    	
+	<!-- Custom-Apps -->
+    <Menu>
+        <Name>Apps</Name>
+        <Directory>Custom-Apps.directory</Directory>
+        <Include>
+            <Category>X-Apps</Category>
+        </Include>
+    </Menu>
+    <!-- END Custom-Apps -->
+    	
+	<!-- Custom-SoundVideo -->
+    <Menu>
+        <Name>Sound Video</Name>
+        <Directory>Custom-SoundVideo.directory</Directory>
+        <Include>
+            <Category>X-SoundVideo</Category>
+        </Include>
+    </Menu>
+    <!-- END Custom-SoundVideo -->
+    	
+	<!-- Custom-Graphics -->
+    <Menu>
+        <Name>Graphics</Name>
+        <Directory>Custom-Graphics.directory</Directory>
+        <Include>
+            <Category>X-Graphics</Category>
+        </Include>
+    </Menu>
+    <!-- END Custom-Graphics -->
+    	
+	<!-- Custom-WebDevelopment -->
+    <Menu>
+        <Name>Web Dev</Name>
+        <Directory>Custom-WebDevelopment.directory</Directory>
+        <Include>
+            <Category>X-WebDevelopment</Category>
+        </Include>
+    </Menu>
+    <!-- END Custom-WebDevelopment -->
+    	
+	<!-- Custom-Administration -->
+    <Menu>
+        <Name>Admin</Name>
+        <Directory>Custom-Administration.directory</Directory>
+        <Include>
+            <Category>X-Administration</Category>
+        </Include>
+    </Menu>
+    <!-- END Custom-Administration -->
+    
+    <!-- Other -->
+    <Menu>
+        <Name>Other</Name>
+        <Directory>Custom-lxde-other.directory</Directory>
+       <Include>
+		<Category>X-Other</Category>
+	</Include>
+        <Exclude>
+            <Or>
+                <Filename>debian-uxterm.desktop</Filename>
+                <Filename>debian-xterm.desktop</Filename>
+                <Filename>synaptic-kde.desktop</Filename>
+            </Or>
+        </Exclude>
+    </Menu>
+    <!-- End Other -->
+
+</Menu>
