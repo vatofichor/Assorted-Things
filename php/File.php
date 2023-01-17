@@ -3,31 +3,10 @@
 * -----------------------------------
 * GitHub: py-seb
 * Author: Sebastian Mass
-* I made this php class for an old project to handle some file operations.
-* Could use some updates, optimizations, and a little love.
-*
-* HOW TO USE:
-* **Note that these methods will not work with hidden files!
-* createDir()
-*   Method to create a directory. Parameters include the directory path and optional
-*   umask value. The default umask is full read, write, and execute for everyone.
-*   Returns false if directory exist or cannot create directory, true if directory is created.
-* delete()
-*   Method which can delete a single, multiple, or all files within a given directory.
-*     Delete Single File:
-*     Delete Multiple Files:
-*     Delete Recursively:
-* rename()
-*	Method to rename files, will not work on directories.
-*		Rename All Files Within Directory:
-*		Rename Multiple Files With Common Name: (This will rename the files with an incrementing suffix in brackets)
-*		Rename Multiple Files With Individually Provided Names:
-*		Rename Single File:
-* TO DO:
-* -Revisit move method.
-* -Finish and test Exception handling method.
-* -Multiple file rename with custom prefix instead of incre. no.
+* I made this for an old class project to handle some file operations.
 */
+
+
 	class File {
 		public static function createDir($path, $permissionMask = 0756){
 			if(self::checkExist($path, 'dir')){
